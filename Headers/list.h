@@ -2,8 +2,8 @@
 // == PythonPlusPlus - List =
 // ==========================
 //
-//  Created by Arjun  Aravind on 2017-12-30.
-//  Copyright 2017 Arjun  Aravind. All rights reserved.
+//  Created by Arjun Aravind on 2017-12-30.
+//  Copyright 2017 Arjun Aravind. All rights reserved.
 //
 
 #include"var.h"
