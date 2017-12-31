@@ -27,6 +27,9 @@ Using these header files is very simple.
 * Be sure to read the list of built-in functions for each PyPlusPlus object available and how to use them before you proceed.
 
 ### Sample Programs
+The following programs won't make a lot of sense, they only demonstrate how the objects can be used and some functions. For the complete reference, scroll down to **Reference**.
+
+#1
 ```
 #include"list.h"
 
@@ -45,7 +48,7 @@ int main(){
 	
 	cout<<"The list is "<<numList<<endl;
 	numList.reverse();
-	cout<<"The list is now "<<numList<<endl;
+	cout<<"The reversed list is now "<<numList<<endl;
 	
 	numList.pop();
 	numList.pop(0);
@@ -63,6 +66,76 @@ Enter a number --> 2
 Enter a number --> 24
 The number of times that 2 appears in the list is --> 1
 The list is [23, 101, 2, 4]
-The list is now [4, 2, 101, 23]
+The reversed list is now [4, 2, 101, 23]
 The list is now [2, 101]
 ```
+#2
+```
+#include"list.h"
+
+int main(){
+	
+	var myName = "Arjun Aravind";
+	var myAge = 19;
+	
+	if(myAge==19 && myName=="Arjun Aravind")
+		cout<<"My name is "<<myName<<" and I am old enough to drive."<<endl;
+	
+	if(myAge%2==0) cout<<"My age is an even number"<<endl;
+	else cout<<"My age is an odd number"<<endl;
+	
+	myName = "Darth ";
+	myName = myName + "Vader";
+	cout<<"Name: "<<myName<<endl;
+	
+	myName = 2314;
+	cout<<"myName is now a number containing --> "<<myName<<endl;
+	
+	return 0;
+}
+```
+**Output**
+```
+My name is Arjun Aravind and I am old enough to drive.
+My age is an odd number
+Name: Darth Vader
+myName is now a number containing --> 2314
+```
+#3
+```
+#include"list.h"
+
+int main(){
+	
+	list values;
+	var a;
+	
+	cout<<"Enter random values:- \n";
+	
+	cin>>a;
+	values.append(a);
+	cin>>a;
+	values.append(a);
+	cin>>a;
+	values.append(a);
+	
+	cin>>a;
+	values.insert(0, a);
+	
+	cout<<"The list is "<<values<<endl;
+	
+	return 0;
+}
+```
+**Output**
+```
+Enter random values:- 
+arjun
+123
+superman
+201
+
+The list is [201, "arjun", 123, "superman"]
+```
+## Reference
+This section details the PyPlusPlus objects which are available currently and the functions that are built into them.
