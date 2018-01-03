@@ -116,12 +116,13 @@ class var{
 	
 			return (num+afterPoint);
 	}
-	private: char* getString(double num){
+	public: char* toString(){
 		/*We need to first seperate the whole number and the decimal number. We then make the decimal number into a whole number by multiplying it. We then get the length of these two numbers. After that, we divide them one by one and add them to the string as ascii values.*/
-		long wholeNum=num, decimalNumTest; /* Step 1 */
-		double decimalNum=num-wholeNum;
+		long wholeNum=val.d, decimalNumTest; /* Step 1 */
+		double decimalNum=val.d-wholeNum;
+		cout<<val.d<<endl;
 		
-		while(true){  /* Step 2 */
+		while(true && decimalNum!=0){  /* Step 2 */
 			decimalNum*=10;
 			decimalNumTest=(decimalNum+1);
 			if(decimalNumTest%10==0){
@@ -143,10 +144,8 @@ class var{
 		for(i=(countWhole+countDecimal); decimalNumTest!=0; i--, decimalNumTest/=10) string[i]='0'+(decimalNumTest%10);
 		string[countWhole]='.';
 		
-		cout<<"the string is "<<string<<endl;
-		
 		return string;
-	}
+	} /*ISSSSUEEE! NEED TO FIX THIS FUNCTION. MAYBE EVEN WRITE A NEW ONE.*/
 
 	private: void setNum(double num){
 		setDefaultsAndFree();
@@ -944,6 +943,7 @@ class var{
 	public: friend ostream &operator<<(ostream &o, var &v);
 	public: friend istream &operator>>(istream &i, var &v);
 	
+	public: class list;
 };
 
 ostream &operator<<(ostream &o, var &v){

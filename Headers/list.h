@@ -33,6 +33,13 @@ class list{
 		/*When the object is declared, then the list is created.*/
 		create();
 	}
+	public: list(list &l){
+		/* Overloads the constructor in the case that another list object is equated to it during initialisation. */
+			create(); /* We call 'create()' which initialises the 'list' variable and creates the 'head' node. */
+			int len=l.size(), i; /* We then add the elements of the passed in list one by one to THIS list using the append() function. */
+			for(i=0; i<len; i++) append(l[i]);
+	}
+	
 	public: ~list(){
 		/* Called when the object is no longer in use */
 			free();
@@ -118,6 +125,13 @@ class list{
 				}
 			}
 	}
+	public: void change(int index, var num){
+		/* This function changes the data in the specified index to 'num'. */
+			int count=0;
+			for(pos=head->next; pos!=NULL; pos=pos->next, count++)
+				if(count==index)
+					pos->data=num;
+	}
 	public: void extend(list &l){
 		/* This function takes the list passed in and appends all of its contents to THIS list */
 			int len=l.size(), i;
@@ -153,6 +167,7 @@ class list{
 				}
 			}
 	}
+	
 	public: int count(var num){
 		/* This function returns the number of times the value passed is found in the list. */
 			int count=0;
