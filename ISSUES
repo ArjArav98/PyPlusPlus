@@ -1,0 +1,9 @@
+1. We cannot "cout" the result of an operation. For example;
+var a=12;
+var b=13;
+cout<<a+b<<endl;
+This is not possible. I think it might have something to do with the fact that when an operation happens on two vars, it returns a new var. This might mess with the ostream overload function.
+
+2. This might be a continuation of the first issues. We cannot print an individual element of a list.
+
+3. The toString() function in the var.h header file will leak memory everytime it is used. We must find a way to fix this. Or else, we must either learn to ignore the memory leakage or scrap the function altogether.

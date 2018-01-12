@@ -245,7 +245,7 @@ class list{
 				if(exception==1) cout<<"\nerror: index ["<<index<<"] is out of bounds!\n";
 				byebye(FAIL);
 			}
-			var a=23.4; /* random dummy value */
+			var a=19.98; /* random dummy value */
 			return a;
 	}
 	public: void operator=(list &l){

@@ -1,7 +1,7 @@
 # PyPlusPlus
 PyPlusPlus is a library written wholly in C++ that gives programmers the ability to introduce some of Python's core features and functionality into C++. Features like Dynamic Typing, Lists, Dictionaries, Tuples, etc that were once not easily available in C++ can now be used in programs effortlessly. 
 
-This library aims to re-create Pythonic features almost exactly albeit some minor changes and absences. The vast majority of Python Objects and their built-in functions will be available to C++ developers at the completion of this project.
+This library aims to re-create Pythonic features almost exactly albeit some minor syntax and function changes. The vast majority of Python Objects and their built-in functions will be available to C++ developers at the completion of this project.
 
 **Note**: Currently, only the headers for Dynamic Typing and Lists have been completed. Try it out and send over your thoughts and criticisms. :-)
 

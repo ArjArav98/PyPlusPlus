@@ -116,36 +116,30 @@ class var{
 	
 			return (num+afterPoint);
 	}
-	public: char* toString(){
-		/*We need to first seperate the whole number and the decimal number. We then make the decimal number into a whole number by multiplying it. We then get the length of these two numbers. After that, we divide them one by one and add them to the string as ascii values.*/
-		long wholeNum=val.d, decimalNumTest; /* Step 1 */
-		double decimalNum=val.d-wholeNum;
-		cout<<val.d<<endl;
+	
+	private: int getDecimal(double doubleNum){
+		/* This function returns the decimal point values of a given double variable. */
+			long longNum=doubleNum;
+			double doubleDecimal=(doubleNum-longNum)*10;
+	
+			if(doubleDecimal!=0){
+				long longDecimal=doubleDecimal;
+	
+				while(longDecimal%10!=0){
+					doubleDecimal*=10;
+					longDecimal=doubleDecimal;
+				}
 		
-		while(true && decimalNum!=0){  /* Step 2 */
-			decimalNum*=10;
-			decimalNumTest=(decimalNum+1);
-			if(decimalNumTest%10==0){
-				decimalNumTest/=10;
-				break;
+				return doubleDecimal/=10;
 			}
-		}
-		
-		int countWhole, countDecimal;
-		long wholeNumDup=wholeNum, decimalNumTestDup=decimalNumTest;
-		
-		for(countWhole=0; wholeNumDup!=0; countWhole++, wholeNumDup/=10);
-		for(countDecimal=0; decimalNumTestDup!=0; countDecimal++, decimalNumTestDup/=10);
-		
-		char* string=new char[countWhole+countDecimal+1];
-		
-		int i;
-		for(i=(countWhole-1); wholeNum!=0; i--, wholeNum/=10) string[i]='0'+(wholeNum%10);
-		for(i=(countWhole+countDecimal); decimalNumTest!=0; i--, decimalNumTest/=10) string[i]='0'+(decimalNumTest%10);
-		string[countWhole]='.';
-		
-		return string;
-	} /*ISSSSUEEE! NEED TO FIX THIS FUNCTION. MAYBE EVEN WRITE A NEW ONE.*/
+			else return 0;
+	}
+	private: int getLength(long number){
+		/* This function returns the number of digits (or the length) of a given long variable. */
+			int i=0;
+			for(i=0; number!=0; i++, number/=10);
+			return i;
+	}
 
 	private: void setNum(double num){
 		setDefaultsAndFree();
@@ -243,6 +237,50 @@ class var{
 		
 			return 0;
 	}
+	
+/* Utility functions available to the user */
+
+	public: char* toString(){
+		/* This function checks what type is currently stored in THIS object and converts it into a string and returns it. */
+			try{
+				if(type==_NONE) throw 1;
+				else if(type==_INT){
+					/*
+						* We first get the length of the wholeNum part of val.d and the decimalNum part of val.d. We then convert each digit of these two numbers and we then store it into a string. This string is then returned.
+						* The algorithm for conversion is pretty self-evident.
+					*/
+					long wholeNum=val.d, decimalNum=getDecimal(val.d);
+					int wholeNumLen=getLength(wholeNum), decimalNumLen=getLength(decimalNum);
+	
+					if(decimalNumLen!=0){
+						char* str=new char[wholeNumLen+decimalNumLen+1];
+						int i=0, j=0;
+		
+						for(i=(wholeNumLen+decimalNumLen); decimalNum!=0; i--, decimalNum/=10) str[i]='0'+(decimalNum%10);
+						str[i--]='.';
+						for(; wholeNum!=0; i--, wholeNum/=10) str[i]='0'+(wholeNum%10);
+	
+						return str;
+					}
+					else{
+						char* str=new char[wholeNumLen];
+	
+						int i=0, j=0;
+						for(i=wholeNumLen-1; wholeNum!=0; i--, wholeNum/=10) str[i]='0'+(wholeNum%10);
+	
+						return str;
+					}
+				}
+				else if(type==_STR) return val.c;
+			} catch (int exception){
+				if(exception==1) cout<<"error: variable of type 'var' must be initialised first to perform toString()\n";
+			}
+			
+			char* a=NULL;
+			return a;
+	} /* This function might result in memory leakage */
+	//toInt(), toDouble() are some of the functions which need to be added.
+	//Also, stuff like equals(), compares() and all that must be added for the user.
 	
 /* Operator Overloading Functions */
 	public: void operator=(double num){
