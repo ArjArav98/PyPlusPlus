@@ -7,3 +7,7 @@ This is not possible. I think it might have something to do with the fact that w
 2. This might be a continuation of the first issues. We cannot print an individual element of a list.
 
 3. The toString() function in the var.h header file will leak memory everytime it is used. We must find a way to fix this. Or else, we must either learn to ignore the memory leakage or scrap the function altogether.
+
+
+TO DO!!!
+1. Need to make sure the update() and cout overload in the dict.h are proper. There is something wrong with them.
