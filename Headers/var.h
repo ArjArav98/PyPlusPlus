@@ -279,8 +279,33 @@ class var{
 			char* a=NULL;
 			return a;
 	} /* This function might result in memory leakage */
-	//toInt(), toDouble() are some of the functions which need to be added.
-	//Also, stuff like equals(), compares() and all that must be added for the user.
+	public: int toInt(){
+		/* This function, when called, will return an integer if the current type of the object is _INT (a number). If _STR, then an excpeion is thrown. If type is _NONE (var is not initialised), an exception is thrown. */
+			try{
+				if(type==_NONE) throw 1;
+				else if(type==_INT){
+					int num=val.d;
+					return num;
+				}
+				else if(type==_STR) throw 2;
+			} catch (int exception){
+				if(exception==1) cout<<"error: variable of type 'var' must be initialised first to perform toInt()\n";
+				else if(exception==2) cout<<"error: variable must contain a number for toInt() to be performed\n";
+			}
+			return 0; //Some dummy value
+	}
+	public: double toDouble(){
+		/* This function when called, will return a douible if the current type of the object is _INT (a number). If _STR, then an exception is thrown. If type is _NONE (var is not initialised), an exception is thrown. */
+			try{
+				if(type==_NONE) throw 1;
+				else if(type==_INT) return val.d;
+				else if(type==_STR) throw 2;
+			} catch (int exception){
+				if(exception==1) cout<<"error: variable of type 'var' must be initialised first to perform toDouble()\n";
+				else if(exception==2) cout<<"error: variable must contain a number for toDouble() to be peformed\n";
+			}
+			return 0; //Some dummy value
+	}
 	
 /* Operator Overloading Functions */
 	public: void operator=(double num){
