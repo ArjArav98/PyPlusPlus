@@ -542,95 +542,76 @@ class var{
 	}
 	
 	public: int operator==(double num){
-		/*This function overloads the == operator. This function returns 0 if the argument and the double in THIS object are not equal and 1 if they are equal. If the type of THIS object is not a _INT, an exception is thrown.*/
-			try{
-				if(type==_STR) throw 1;
-				else if(type==_INT){
-					if(num==val.d) return 1;
-					else return 0;
-				}
-			} catch (int exception){
-				cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+		/*This function overloads the == operator. This function returns 0 if the argument and the double in THIS object are not equal and 1 if they are equal. If the type of THIS object is not a _INT, 0 is returned because they cannot equal.*/
+			if(type==_STR) return 0;
+			else if(type==_INT){
+				if(num==val.d) return 1;
+				else return 0;
 			}
-			return -1;
+			else if(type==_NONE) return 0;
+			else return -1; //Dummy return value
 	}
 	public: int operator==(const char* string){
-		/* This function overloads the == operator. 1 or 0 is returned if the variables are equal or not equal respectively. If the type of THIS object is not a _STR, an exception is thrown. */
-			try{
-				if(type==_INT) throw 1;
-				else if(type==_STR){
-					if(strEquals(val.c, string)==1) return 1;
-					else return 0;
-				}
-			} catch (int exception){
-				if(exception==1) cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+		/* This function overloads the == operator. 1 or 0 is returned if the variables are equal or not equal respectively. If the type of THIS object is not a _STR, 0 is thrown because the number and the string cannot be equal. */
+			if(type==_INT) return 0;
+			else if(type==_STR){
+				if(strEquals(val.c, string)==1) return 1;
+				else return 0;
 			}
-			return -1;
+			else if(type==_NONE) return 0;
+			else return -1; //Dummy return value
 	}
 	public: int operator==(var &v){
-		/* This function overloads the == operator. If the type of variable of THIS object and the type variable of the object passed in are not the same, then an exception is thrown. If not, then the values are checked and 1 or 0 is returned depending upon whether they are equal or not. */
-			try{
-				if(type==v.Type()){
-					if(type==_INT){
-						if(v.val.d==val.d) return 1;
-						else return 0;
-					}
-					else if(type==_STR){
-						if(strEquals(val.c, v.val.c)==1) return 1;
-						else return 0;
-					}
+		/* This function overloads the == operator. If the type of variable of THIS object and the type variable of the object passed in are not the same, then 0 is returned because they cannot be equal. If not, then the values are checked and 1 or 0 is returned depending upon whether they are equal or not. */
+			if(type==v.Type()){
+				if(type==_INT){
+					if(v.val.d==val.d) return 1;
+					else return 0;
 				}
-				else throw 1;
-			} catch (int exception){
-				if(exception==1) cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+				else if(type==_STR){
+					if(strEquals(val.c, v.val.c)==1) return 1;
+					else return 0;
+				}
+				else if(type==_NONE) return 0;
 			}
-			return -1;
+			else return 0;
+			return -1; //Dummy return value
 	}
 	
 	public: int operator!=(double num){
-		/*This function overloads the != operator. This function returns 1 if the argument and the double in THIS object are not equal and 0 if they are equal. If the type of THIS object is not a _INT, an exception is thrown.*/
-			try{
-				if(type==_STR) throw 1;
-				else if(type==_INT){
-					if(num==val.d) return 0;
-					else return 1;
-				}
-			} catch (int exception){
-				cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+		/*This function overloads the != operator. This function returns 1 if the argument and the double in THIS object are not equal and 0 if they are equal. If the type of THIS object is not a _INT, 1 is returned because they cannot be equal.*/
+			if(type==_STR) return 1;
+			else if(type==_INT){
+				if(num==val.d) return 0;
+				else return 1;
 			}
-			return -1;
+			else if(type==_NONE) return 1;
+			else return -1; //Dummy return value
 	}
 	public: int operator!=(const char* string){
-		/* This function overloads the != operator. 0 or 1 is returned if the variables are equal or not equal respectively. If the type of THIS object is not a _STR, an exception is thrown. */
-			try{
-				if(type==_INT) throw 1;
-				else if(type==_STR){
-					if(strEquals(val.c, string)==1) return 0;
-					else return 1;
-				}
-			} catch (int exception){
-				if(exception==1) cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+		/* This function overloads the != operator. 0 or 1 is returned if the variables are equal or not equal respectively. If the type of THIS object is not a _STR, 0 is returned because they cannot be equal. */
+			if(type==_INT) return 1;
+			else if(type==_STR){
+				if(strEquals(val.c, string)==1) return 0;
+				else return 1;
 			}
-			return -1;
+			else if(type==_NONE) return 1;
+			else return -1; //Dummy return value
 	}
 	public: int operator!=(var &v){
-		/* This function overloads the != operator. If the type of variable of THIS object and the type variable of the object passed in are not the same, then an exception is thrown. If not, then the values are checked and 1 or 0 is returned depending upon whether they are equal or not. */
-			try{
-				if(type==v.Type()){
-					if(type==_INT){
-						if(v.val.d==val.d) return 0;
-						else return 1;
-					}
-					else if(type==_STR){
-						if(strEquals(val.c, v.val.c)==1) return 0;
-						else return 1;
-					}
+		/* This function overloads the != operator. If the type of variable of THIS object and the type variable of the object passed in are not the same, then 0 is returned bceause they cannot be equal. If not, then the values are checked and 1 or 0 is returned depending upon whether they are equal or not. */
+			if(type==v.Type()){
+				if(type==_INT){
+					if(v.val.d==val.d) return 0;
+					else return 1;
 				}
-				else throw 1;
-			} catch (int exception){
-				if(exception==1) cout<<"error: cannot equate type 'string' and type 'number'. Also, make sure that both variables are initialised.\n";
+				else if(type==_STR){
+					if(strEquals(val.c, v.val.c)==1) return 0;
+					else return 1;
+				}
 			}
-			return -1;
+			else return 1;
+			return -1; //Dummy return value
 	}
 	
 	public: int operator>(double num){
@@ -682,7 +663,7 @@ class var{
 	public: int operator>=(double num){
 		/*This function overloads the >= operator. This function returns 1 if THIS double is greater than or equal to the argument passed in and 0 if not. If the type of THIS object is not a _INT, an exception is thrown.*/
 			try{
-				if(type==_STR) throw 1;
+				if(type==_STR) return 0;
 				else if(type==_INT){
 					if(num>=val.d) return 1;
 					else return 0;

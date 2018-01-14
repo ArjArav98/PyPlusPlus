@@ -197,7 +197,7 @@ class list{
 		/* We initialise the head node of a list. */
 			head=new struct Node;
 			head->next=NULL;
-			head->data=10;
+			head->data=0;
 	}
 	private: void free(){
 		/* This functions frees the dynamically allocated elements of the linked list */
