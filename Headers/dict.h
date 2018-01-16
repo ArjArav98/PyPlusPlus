@@ -1,6 +1,6 @@
-// ===============================
-// = PythonPlusPlus - Dictionary =
-// ===============================
+// =======================
+// == Py++ - Dictionary ==
+// =======================
 //
 //  Created by Arjun Aravind on 2018-01-15.
 //  Copyright 2018 Arjun Aravind. All rights reserved.
@@ -45,31 +45,35 @@ class dict{
 	
 /* Utility functions available to users */
 	
-	public: void update(var key, var data){
-		pos=head;
-		while(pos!=NULL){
-			if(pos->key==key){
-				pos->data=data;
-				return;
+	public: void update(var key, var data="NULL"){
+		
+		/* This is one of the most integral functions for this class. This function takes in a key and data (both objects of type 'var'). If no data is entered, then the data is taken as "NULL", which is a default value. 
+			--> This function first searches if the key is present in the dictionary already. If it is present, then the 'data' object of that dictionary pair is assigned the value of the argument 'data' object. If the key is not present, a new dictionary pair is created and is assigned the values of the key and data objects which have been passed in.*/
+		
+			pos=head; /* We check if the key already exists and, if yes, we update it. */
+			while(pos!=NULL){
+				if(pos->key==key){
+					pos->data=data;
+					return; /* We update the 'data' object and return out of the function. */
+				}
+				pos=pos->next;
 			}
-			pos=pos->next;
-		}
 		
-		temp=new struct Node;
-		temp->next=NULL;
-		temp->key=key;
-		temp->data=data;
+			Temp tmp=new struct Node; /* We create a new node. */
+			tmp->next=NULL;
+			tmp->key=key;
+			tmp->data=data;
 		
-		pos=head;
-		while(pos!=NULL){
-			if(pos->next==NULL){
-				pos->next=temp;
-				return;
+			pos=head;
+			while(pos!=NULL){
+				if(pos->next==NULL){
+					pos->next=tmp;
+					return; /* After inserting this node, we return out of the function. */
+				}
+				pos=pos->next;
 			}
-			pos=pos->next;
-		}
 		
-		return;
+			return;
 	}
 	
 /* Utility functions used internally */
@@ -107,33 +111,33 @@ class dict{
 };
 
 ostream &operator<<(ostream &o, dict &d){
+	/* This function overloads the output stream << operator. We print the dictionary object in the same way as it might be printed in Python. */
+		o<<"{";
 	
-	o<<"{";
-	
-	d.pos=d.head->next;
-	while(d.pos!=NULL){
-		int keyType=d.pos->key.Type();
-		int dataType=d.pos->data.Type();
-		if(d.pos->next!=NULL){
-			if(keyType==_INT) o<<d.pos->key<<", ";
-			else if(keyType==_STR) o<<"\""<<d.pos->key<<"\": ";
-			{
-				if(dataType==_INT) o<<d.pos->data<<", ";
-				else if(dataType==_STR) o<<"\""<<d.pos->data<<"\", ";
+		d.pos=d.head->next;
+		while(d.pos!=NULL){
+			int keyType=d.pos->key.Type();
+			int dataType=d.pos->data.Type();
+			if(d.pos->next!=NULL){
+				if(keyType==_INT) o<<d.pos->key<<", ";
+				else if(keyType==_STR) o<<"'"<<d.pos->key<<"': ";
+				{
+					if(dataType==_INT) o<<d.pos->data<<", ";
+					else if(dataType==_STR) o<<"'"<<d.pos->data<<"', ";
+				}
 			}
-		}
-		else{
-			if(keyType==_INT) o<<d.pos->key;
-			else if(keyType==_STR) o<<"\""<<d.pos->key<<"\": ";
-			{
-				if(dataType==_INT) o<<d.pos->data;
-				else if(dataType==_STR) o<<"\""<<d.pos->data<<"\"";
+			else{
+				if(keyType==_INT) o<<d.pos->key;
+				else if(keyType==_STR) o<<"'"<<d.pos->key<<"': ";
+				{
+					if(dataType==_INT) o<<d.pos->data;
+					else if(dataType==_STR) o<<"'"<<d.pos->data<<"'";
+				}
 			}
+			d.pos=d.pos->next;
 		}
-		d.pos=d.pos->next;
-	}
 	
-	o<<"}";
+		o<<"}";
 	
-	return o;
+		return o;
 }

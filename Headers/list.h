@@ -1,6 +1,6 @@
-// ==========================
-// == PythonPlusPlus - List =
-// ==========================
+// =================
+// == Py++ - List ==
+// =================
 //
 //  Created by Arjun Aravind on 2017-12-30.
 //  Copyright 2017 Arjun Aravind. All rights reserved.
@@ -197,7 +197,6 @@ class list{
 		/* We initialise the head node of a list. */
 			head=new struct Node;
 			head->next=NULL;
-			head->data=0;
 	}
 	private: void free(){
 		/* This functions frees the dynamically allocated elements of the linked list */
@@ -268,11 +267,11 @@ ostream &operator<<(ostream &o, list &l){
 		l.pos=l.head->next;
 		while(l.pos!=NULL){
 			if(l.pos->next==NULL){
-				if(l.pos->data.type==_STR) o<<"\""<<l.pos->data<<"\"";
+				if(l.pos->data.type==_STR) o<<"'"<<l.pos->data<<"'";
 				else o<<l.pos->data;
 			}
 			else{
-				if(l.pos->data.type==_STR) o<<"\""<<l.pos->data<<"\""<<", ";
+				if(l.pos->data.type==_STR) o<<"'"<<l.pos->data<<"'"<<", ";
 				else o<<l.pos->data<<", ";
 			}
 			l.pos=l.pos->next;
