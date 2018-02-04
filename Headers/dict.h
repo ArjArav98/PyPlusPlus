@@ -119,7 +119,7 @@ ostream &operator<<(ostream &o, dict &d){
 			int keyType=d.pos->key.Type();
 			int dataType=d.pos->data.Type();
 			if(d.pos->next!=NULL){
-				if(keyType==_INT) o<<d.pos->key<<", ";
+				if(keyType==_INT) o<<d.pos->key<<": ";
 				else if(keyType==_STR) o<<"'"<<d.pos->key<<"': ";
 				{
 					if(dataType==_INT) o<<d.pos->data<<", ";
@@ -127,7 +127,7 @@ ostream &operator<<(ostream &o, dict &d){
 				}
 			}
 			else{
-				if(keyType==_INT) o<<d.pos->key;
+				if(keyType==_INT) o<<d.pos->key<<": ";
 				else if(keyType==_STR) o<<"'"<<d.pos->key<<"': ";
 				{
 					if(dataType==_INT) o<<d.pos->data;
